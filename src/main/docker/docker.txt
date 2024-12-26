@@ -1,0 +1,3 @@
+docker pull valkey/valkey:8.0.1
+docker run --net=host valkey/valkey:8.0.1
+docket stop valkey/valkey:8.0.1
