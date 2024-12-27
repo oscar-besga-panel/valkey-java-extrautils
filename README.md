@@ -7,7 +7,7 @@ _Project information_
 [![Wiki](https://badgen.net/badge/icon/wiki?icon=wiki&label)](https://github.com/oscar-besga-panel/JedisExtraUtils/wiki)
 [![OpenHub](https://badgen.net/badge/%20/openhub/purple?icon=awesome)](https://openhub.net/p/JedisExtraUtils)
 
-_Project derived from [JedisExtraUtils](https://github.com/oscar-besga-panel/JedisExtraUtils) for [Redis database](httpd://redis.io)_  
+_Project derived from [JedisExtraUtils](https://github.com/oscar-besga-panel/JedisExtraUtils) , which uses [Jedis](https://github.com/redis/jedis); for [Redis database](httpd://redis.io)_  
 
 # Introduction to Valkey-Java-Extrautils
 
@@ -24,11 +24,11 @@ These include
     the grip and they can proceed to get the lock, without poolling
   * Semaphores
   * CountDownLatch: count down to open the flood gates and allow all waiters to progress
-* Collections: redis-backed implementation of Java collection interfaces, with all data stored on Redis, like
+* Collections: redis-backed implementation of Java collection interfaces, with all data stored on valkey, like
   * Lists
   * Map
   * Set
-* Iterator: free yourself from Redis SCAN internal hassle and use easy Java iterables or iterators for these operations:
+* Iterator: free yourself from valkey SCAN internal hassle and use easy Java iterables or iterators for these operations:
   * HScanIterable: To scan maps
   * ScanIterable: To scan all keys
   * SScanIterable: To scan sets
@@ -48,7 +48,7 @@ All this classes use a Jedis pool connection to make them thread-safe and more e
 It's intended to make possible distributes locking and synchronization, share data across process and aid with distributed computing.
 
 All classes have tests, unit and functional ones.   
-You can test the latter ones by activating them and configuring your own redis server, to test that all the classes work properly in theory and practice.  
+You can test the latter ones by activating them and configuring your own valkey server, to test that all the classes work properly in theory and practice.  
 There are **more than 630 working tests**, so the code is pretty secure.
 
 
