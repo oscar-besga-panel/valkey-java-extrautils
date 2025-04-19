@@ -57,10 +57,11 @@ There are **more than 630 working tests**, so the code is pretty secure.
 
 ## Made with
 
-valkey-java is a Java library to use a Valkey server with Java, at a low-level commands
+valkey-java is a Java library to use a Valkey server with Java, at a low-level commands  
 https://github.com/valkey-io/valkey-java.  
   
-See it on mvn repository: https://central.sonatype.com/artifact/io.valkey/valkey-java  
+See it on mvn repository:  
+https://central.sonatype.com/artifact/io.valkey/valkey-java  
 
 
 Made with
