@@ -9,6 +9,7 @@ import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.valkey.JedisPool;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,7 @@ public class FunctionalLocksOnCriticalZoneTest {
     public void after() {
         if (!jtfTest.functionalTestEnabled()) return;
         if (jedisPool != null) {
+            WithJedisPoolDelete.doDelete(jedisPool, lockName);
             jedisPool.close();
         }
     }

@@ -10,6 +10,7 @@ import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import org.oba.jedis.extra.utils.utils.SimpleEntry;
 import io.valkey.Jedis;
 import io.valkey.JedisPool;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 
 import java.util.*;
 
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class FunctionalSimpleCacheTest {
 
+    private static final List<String> listNameKeysToDelete = new ArrayList<>();
 
 
     private final JedisTestFactory jtfTest = JedisTestFactory.get();
@@ -34,6 +36,7 @@ public class FunctionalSimpleCacheTest {
     @After
     public void tearDown() {
         if (jedisPool != null) {
+            WithJedisPoolDelete.doDelete(jedisPool, listNameKeysToDelete);
             jedisPool.close();
         }
     }
@@ -44,6 +47,7 @@ public class FunctionalSimpleCacheTest {
 
     SimpleCache createNewCache(long timeOut) {
         String name = "cache:" + this.getClass().getName() + ":" + System.currentTimeMillis();
+        listNameKeysToDelete.add(name);
         return new SimpleCache(jedisPool, name, timeOut);
     }
 

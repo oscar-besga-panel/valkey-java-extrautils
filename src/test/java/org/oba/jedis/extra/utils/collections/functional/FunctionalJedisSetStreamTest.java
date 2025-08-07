@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.oba.jedis.extra.utils.collections.JedisSet;
 import org.oba.jedis.extra.utils.test.JedisTestFactory;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.valkey.Jedis;
@@ -37,9 +38,7 @@ public class FunctionalJedisSetStreamTest {
     @After
     public void after() {
         if (jedisPool != null) {
-            try(Jedis jedis = jedisPool.getResource()) {
-                jedis.del(setName);
-            }
+            WithJedisPoolDelete.doDelete(jedisPool, setName);
             jedisPool.close();
         }
     }

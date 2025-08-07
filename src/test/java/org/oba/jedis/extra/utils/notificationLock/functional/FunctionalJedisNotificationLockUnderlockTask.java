@@ -7,6 +7,7 @@ import org.oba.jedis.extra.utils.notificationLock.NotificationLock;
 import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import io.valkey.Jedis;
 import io.valkey.JedisPool;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -33,9 +34,7 @@ public class FunctionalJedisNotificationLockUnderlockTask {
     public void tearDown() {
         if (!jtfTest.functionalTestEnabled()) return;
         if (jedisPool != null) {
-            try (Jedis jedis = jedisPool.getResource()) {
-                jedis.del(keyName);
-            }
+            WithJedisPoolDelete.doDelete(jedisPool, keyName);
             jedisPool.close();
         }
     }

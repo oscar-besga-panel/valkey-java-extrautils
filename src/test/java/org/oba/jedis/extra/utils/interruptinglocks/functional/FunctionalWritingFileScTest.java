@@ -9,6 +9,7 @@ import org.oba.jedis.extra.utils.interruptinglocks.JedisLock;
 import org.oba.jedis.extra.utils.lock.IJedisLock;
 import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import org.oba.jedis.extra.utils.utils.JedisPoolAdapter;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.valkey.Jedis;
@@ -62,6 +63,7 @@ public class FunctionalWritingFileScTest {
 
     void doCloseJedisPool(JedisPool jedisPool) {
         if (jedisPool != null) {
+            WithJedisPoolDelete.doDelete(jedisPool, lockName);
             jedisPool.close();
         }
     }

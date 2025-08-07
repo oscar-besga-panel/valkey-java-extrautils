@@ -8,6 +8,7 @@ import org.oba.jedis.extra.utils.interruptinglocks.JedisLock;
 import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import io.valkey.Jedis;
 import io.valkey.JedisPool;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -38,9 +39,7 @@ public class FunctionalJedisLockTest {
     public void tearDown() {
         if (!jtfTest.functionalTestEnabled()) return;
         if (jedisPool != null) {
-            try (Jedis jedis = jedisPool.getResource()) {
-                jedis.del(keyName);
-            }
+            WithJedisPoolDelete.doDelete(jedisPool, keyName);
             jedisPool.close();
         }
     }

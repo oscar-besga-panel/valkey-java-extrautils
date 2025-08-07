@@ -7,6 +7,8 @@ import org.oba.jedis.extra.utils.semaphore.JedisSemaphore;
 import org.oba.jedis.extra.utils.test.JedisTestFactory;
 import io.valkey.Jedis;
 import io.valkey.JedisPool;
+import org.oba.jedis.extra.utils.test.WithJedisPoolDelete;
+
 
 import java.io.IOException;
 
@@ -35,9 +37,7 @@ public class FunctionalSemaphoreNumberPermitsTest {
     public void after() throws IOException {
         if (!jtfTest.functionalTestEnabled()) return;
         if (jedisPool != null) {
-            try (Jedis jedis = jedisPool.getResource()) {
-                jedis.del(semaphoreName);
-            }
+            WithJedisPoolDelete.doDelete(jedisPool, semaphoreName);
             jedisPool.close();
         }
     }
