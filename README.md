@@ -83,6 +83,7 @@ Also, you will find a little Groovy and a docker composer to setup a testing red
 
 | Library version | valkey-java version | JDK Version |
 |-----------------|---------------------|-------------|
+| 6.7.0           | 5.5.X               | JDK11       |
 | 6.5.0           | 5.4.X               | JDK11       |
 | 6.3.0           | 5.3.X               | JDK11       |
 
